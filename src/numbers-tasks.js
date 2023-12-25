@@ -127,7 +127,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     0     => 0
  */
 function getLastDigit(number) {
-  return +number.toString().slice(-1);
+  return number % 10;
 }
 
 /**
@@ -275,14 +275,6 @@ function getFibonacciNumber(index) {
     result = getFibonacciNumber(index - 1) + getFibonacciNumber(index - 2);
   }
   return result;
-  // let a = 1;
-  // let b = 1;
-  // for (let i = 3; i <= index; i + 1) {
-  //   const c = a + b;
-  //   a = b;
-  //   b = c;
-  // }
-  // return b;
 }
 
 /**
@@ -298,7 +290,7 @@ function getFibonacciNumber(index) {
  */
 function getSumToN(n) {
   let result = 0;
-  for (let i = 1; i <= n; i + 1) {
+  for (let i = 1; i <= n; i += 1) {
     result += i;
   }
   return result;
@@ -318,7 +310,7 @@ function getSumToN(n) {
 function getSumOfDigits(num) {
   let result = 0;
   const arr = Array.from(num.toString(), Number);
-  for (let i = 0; i < arr.length; i + 1) {
+  for (let i = 0; i < arr.length; i += 1) {
     result += arr[i];
   }
   return result;
@@ -336,7 +328,7 @@ function getSumOfDigits(num) {
  *   15  => false
  */
 function isPowerOfTwo(num) {
-  return (num && num - 1) === 0;
+  return Math.log2(num) % 1 === 0;
 }
 
 /**
@@ -443,7 +435,7 @@ function getNumberValue(number) {
  * '5'      => false
  */
 function isNumber(number) {
-  return Number.isInteger(number);
+  return Number.isInteger(number) && Number.isFinite(number);
 }
 
 /**
@@ -472,7 +464,7 @@ function isInteger(number) {
  * 'abcdefgh'      => NaN
  */
 function getFloatOnString(str) {
-  return parseFloat(str);
+  return Number.parseFloat(str);
 }
 
 /**
@@ -490,7 +482,7 @@ function getFloatOnString(str) {
  * '10', 8              => 8
  */
 function getIntegerOnString(str, base) {
-  return parseInt(str, base);
+  return Number.parseInt(str, base);
 }
 
 /**
@@ -611,7 +603,7 @@ function getMaxNumber(firstNumber, secondNumber) {
  * -1, 1 => -1 | 0 | 1
  */
 function getRandomInteger(min, max) {
-  return Math.random() * (max - min) + min;
+  return Math.round(Math.random() * (max - min)) + min;
 }
 
 /**
@@ -625,7 +617,7 @@ function getRandomInteger(min, max) {
  * 3, 4 => 5
  */
 function getHypotenuse(a, b) {
-  return Math.sqrt(a ** 2 + b ** 2);
+  return Math.hypot(a, b);
 }
 
 /**
@@ -642,13 +634,7 @@ function getHypotenuse(a, b) {
  * 15 => 8
  */
 function getCountOfOddNumbers(number) {
-  let oddCount = 0;
-  for (let i = 1; i <= number; i + 1) {
-    if (i % 2) {
-      oddCount += 1;
-    }
-  }
-  return oddCount;
+  return Math.ceil(Math.abs(number) / 2);
 }
 
 module.exports = {
